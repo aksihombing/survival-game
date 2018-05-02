@@ -21,10 +21,10 @@
 * Starvation
 
 # CHECKLIST
-☐ map/board code
-☐ code for each tile on the board (x16)
-☐ code to move ONLY left, right, up, and down (opt. diagonal)
-☐ code day tracker
-☐ code the amt. of food and water that will help party live
-☐ code character skills
-☐ learn PyGame
+* map/board code
+* code for each tile on the board (x16)
+* code to move ONLY left, right, up, and down (opt. diagonal)
+* code day tracker
+* code the amt. of food and water that will help party live
+* code character skills
+* learn PyGame
