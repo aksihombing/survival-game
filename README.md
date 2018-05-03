@@ -1,5 +1,5 @@
 # STORY
-It's been months since a vrius spread. People who were infected died within hours, or at most, a few days, later. People's greed 
+It's been months since a vrius spread. People who were infected died within hours, or at most, a few days, later. People's greed turned nearly everyone against each other. The group that you were once with has recently turned against you in order to maintain more supplies. Your two good friends decide to join you, staying loyal to you. The group sent the three of you off with minimal supplies to survive about five days, and a map. One of your friends point out that they know of another base from radio transmissions. However, at the end of the next month, they are no longer taking any newcomers. Your goal is to survive the long journey to the base under two months.
 
 
 
@@ -10,7 +10,7 @@ My game is mostly TEXT-BASED. It's a survival game where the player travels with
 The game will end automatically after 30 days.
 
 
-## Sources that helped me:
+### Sources that helped me:
 * ()
 * ()
 * ()
