@@ -28,3 +28,4 @@
 * code the amt. of food and water that will help party live
 * code character skills
 * learn PyGame
+* code choices and their results
