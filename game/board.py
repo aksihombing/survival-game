@@ -26,6 +26,8 @@ class Game:
           raise ValueError
         if int(ychoice) is not 2 or 3:
           raise ValueError
+        # *While trying to look for the symbol for "Not equal to" in python through Google, I saw that "is not" is similar, so i tried it. 
+        # *If it works, I'll add it to my sources.
         break
       except ValueError:
         print("Please choose from given.")
