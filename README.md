@@ -9,7 +9,7 @@ My game is mostly TEXT-BASED. It's a survival game where the player travels with
 
 The game will end automatically after 56* days.
 
-EDIT(5/9/19): Since I realized my project seems way too complicated with the board, I plan on changing my original plan IF I think it will take too long. I will be making it entirely text base, with direction choice with only one series of directions that will lead you to the base. Also, instead of PyGame, I might use Kivy (probably because I'm more familar with it ever since the short lesson).
+EDIT(5/9/19): Since I realized my project seems way too complicated with the board, I plan on changing my original plan IF I think it will take too long. I would be making it entirely text base, with direction choice with only one series of directions that will lead you to the base. Also, instead of PyGame, I might use Kivy (probably because I'm more familar with it, ever since the short lesson).
 
 ### Sources that helped me:
 * ()
