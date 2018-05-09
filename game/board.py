@@ -14,3 +14,19 @@ class Game:
   
   def __str__(self):
     return "{} {} {} {}\n{} {} {} {}\n{} {} {} {}\n{} {} {} {}\n".format(*self.state)
+  
+  # TEMPORARY CODE (UNTESTED)
+  # The code below is for the start of the game
+  def threethree(self):
+    while True:
+      try:
+        xchoice = int(input("Which way do you want to go? (2,3), (2,2), or (3,2)?\n row:"))
+        ychoice = int(input("\n column:"))
+        if int(xchoice) is not 2 or 3:
+          raise ValueError
+        if int(ychoice) is not 2 or 3:
+          raise ValueError
+        break
+      except ValueError:
+        print("Please choose from given.")
+        break
