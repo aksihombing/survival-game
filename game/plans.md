@@ -12,6 +12,7 @@
 * Money
 * Where the player is
 * Which characters are alive
+* character skills (agility, intelligence, charisma) 
 
 ### ENDINGS:
 * Taken away by river
