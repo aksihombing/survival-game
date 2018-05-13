@@ -1,6 +1,10 @@
 # I plan on putting each different aspect (if possible) in different files once done
-#----- BOARD (below)-----#
+# Helper Functions---------------
+def pause():
+  input()  
+  return
 
+#----- BOARD (below)-----#
 class Game:
   
   
@@ -20,6 +24,17 @@ class Game:
   def threethree(self):
     while True:
       try:
+        print("It's been months since a vrius spread. People who were infected died within hours, or at most, a few days, later. People's greed turned nearly everyone against each other.")
+        pause()
+        print("The group that you were once with has recently turned against you in order to maintain more supplies. Your two good friends decide to join you, staying loyal to you. The group sent the three of you off with minimal supplies to survive about five days, yet no map.")
+        pause()
+        print("One of your friends point out that they know of another base from radio transmissions. However, since there is no map, you and your friends must blindly travel together, hoping to come across the base. Also, the base, according to the radio transmissions, will also close under two months.")
+        pause()
+        playername = str(input("What is your name?:\n"))
+        friend1 = str(input("What is the name of your first friend?\n"))
+        friend2 = str(input("What is the name of your second friend?\n"))
+        supplies = {"food" : str(randint(10,30)), "water" : str(randint(15,30)), "money" : "${}".format(str(randint(10,30)))}
+        print("You have....\n {} food\n {} water\n {} left.".format(*supplies))
         xchoice = int(input("Which way do you want to go? (2,3), (2,2), or (3,2)?\n row:"))
         ychoice = int(input("\n column:"))
         if int(xchoice) is not 2 or 3:
