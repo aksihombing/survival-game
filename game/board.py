@@ -1,5 +1,8 @@
 # I plan on putting each different aspect (if possible) in different files once done
 # Helper Functions---------------
+from random import choice 
+from random import randint
+
 def pause():
   input()  
   return
