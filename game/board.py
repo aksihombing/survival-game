@@ -5,7 +5,7 @@ class Game:
   
   
   def __init__(self):
-    self.state = ["[]" for n in range(16)]
+    self.state = ["[]" for n in range(9)]
     self.game_over = False
     self.playerplace = self.state[3][3]
   
@@ -13,7 +13,7 @@ class Game:
     return "Game({})".format(self.state)
   
   def __str__(self):
-    return "{} {} {} {}\n{} {} {} {}\n{} {} {} {}\n{} {} {} {}\n".format(*self.state)
+    return "{} {} {}\n{} {} {}\n{} {} {}\n".format(*self.state)
   
   # TEMPORARY CODE (UNTESTED)
   # The code below is for the start of the game
