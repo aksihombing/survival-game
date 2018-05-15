@@ -32,7 +32,7 @@ class Game:
     friend1 = str(input("What is the name of your first friend?\n"))
     friend2 = str(input("What is the name of your second friend?\n"))
     supplies = {"food" : str(randint(10,30)), "water" : str(randint(15,30)), "money" : "${}".format(str(randint(10,30)))}
-    print("You have....\n {} food\n {} water\n {} left.".format(*supplies))
+    print("You have....\n {} food\n {} water\n {} left.".format(supplies['food'],supplies['water'],supplies['money']))
   
   
   # TEMPORARY CODE (UNTESTED)
