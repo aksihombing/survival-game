@@ -50,3 +50,29 @@ class Game:
           raise IndexError
       except IndexError:
         print("Please choose from the given")
+ 
+   def twoone(self):
+    while True:
+      try:
+        print("There is a large city ahead of your group. Do you wish to continue?\n Enter 1 to continue or 2 to travel east instead\n")
+        pause()
+        continuechoice = int(input())
+        if int(continuechoice) == 1:
+          print("Your group follows you deep into the city.")
+          pause()
+          print("Oh no! The city is infested, and unfortunately your group has been slowed down and infected.")
+          pause()
+          print("'Help...' you hear {} groan. You and {} hear {}'s groaning when it's too late!").format(self.friend1, self.friend2, self.friend1)
+          pause()
+          print("{} grabbed their shoulders and shook them, in disbelief of a lost friend. {}'s head looked up and before you knew it, {} was also infected.").format(self.friend2, self.friend1, self.friend2)
+          pause()
+          print("'{}! Run far away! Please!' {} shouts.").format(self.playername, self.friend2)
+          pause()
+          print("Sucks to be you, huh? It gets worse, too. In an attempt to flee, you hadn't been paying attention to where you ran. You turn around and see a horde of infected people chasing after you, the only healthy person around.")
+          pause()
+          print("G A M E  O V E R")
+          self.game_over == True
+        elif int(continuechoice) == 2:
+          return self.playerplace == self.state[1][1]
+      except:
+        return
