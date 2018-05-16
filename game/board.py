@@ -76,3 +76,14 @@ class Game:
           return self.playerplace == self.state[1][1]
       except:
         return
+  def oneone(self):
+    while True:
+      try:
+        print("'There seems to be many ways to go from here!' {} cheerfully says.").format(friend2)
+        pause()
+        print("{} goes on and on and ON, describing the surroundings, other than the boring trees.").format(friend2)
+        pause()
+        print("Cutting you some slack, here's what they said, in a simpler and easy way.\n NORTHWEST - A strange building\n NORTH - A huge river\n NORTHEAST - A small town\n EAST - A city\n SOUTH - A small and thin river\n SOUTHWEST - ??? There seems to be a light somewhere behind the trees\n WEST - Another small town.")
+        
+        except:
+          return "ok"
