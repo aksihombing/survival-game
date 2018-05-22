@@ -15,6 +15,9 @@ class Game:
     self.state = [['[]','[]','[]'] for n in range(3)]
     self.playerplace = self.state[2][2]
     self.game_over = False
+    self.playername = str(input("What is your name?:\n"))
+    self.friend1 = str(input("What is the name of your first friend?\n"))
+    self.friend2 = str(input("What is the name of your second friend?\n"))
   def __repr__(self):
     return "Game({})".format(self.state)
   
@@ -28,11 +31,10 @@ class Game:
     pause()
     print("One of your friends point out that they know of another base from radio transmissions. However, since there is no map, you and your friends must blindly travel together, hoping to come across the base. Also, the base, according to the radio transmissions, will also close under two months.")
     pause()
-    playername = str(input("What is your name?:\n"))
-    friend1 = str(input("What is the name of your first friend?\n"))
-    friend2 = str(input("What is the name of your second friend?\n"))
+    print("-----------------------------------------\n")
+    pause()
     supplies = {"food" : str(randint(10,30)), "water" : str(randint(15,30)), "money" : "${}".format(str(randint(10,30)))}
-    print("You have....\n {} food\n {} water\n {} left.".format(supplies['food'],supplies['water'],supplies['money']))
+    print("You have....\n {} food cans, {} water bottles, {} left.".format(supplies['food'],supplies['water'],supplies['money']))
   
   
   # TEMPORARY CODE (UNTESTED)
@@ -50,14 +52,13 @@ class Game:
           raise IndexError
       except IndexError:
         print("Please choose from the given")
- 
-   def twoone(self):
+  
+  def twoone(self):
     while True:
       try:
         print("There is a large city ahead of your group. Do you wish to continue?\n Enter 1 to continue or 2 to travel east instead\n")
-        pause()
         continuechoice = int(input())
-        if int(continuechoice) == 1:
+        if int(continuechoice) == int(1):
           print("Your group follows you deep into the city.")
           pause()
           print("Oh no! The city is infested, and unfortunately your group has been slowed down and infected.")
@@ -76,14 +77,16 @@ class Game:
           return self.playerplace == self.state[1][1]
       except:
         return
+ 
+ 
   def oneone(self):
     while True:
       try:
-        print("'There seems to be many ways to go from here!' {} cheerfully says.").format(friend2)
+        print("'There seems to be many ways to go from here!' {} cheerfully says.").format(self.friend2)
         pause()
-        print("{} goes on and on and ON, describing the surroundings, other than the boring trees.").format(friend2)
+        print("{} goes on and on and ON, describing the surroundings, other than the boring trees.").format(self.friend2)
         pause()
-        print("Cutting you some slack, here's what they said, in a simpler and easy way.\n NORTHWEST - A strange building\n NORTH - A huge river\n NORTHEAST - A small town\n EAST - A city\n SOUTH - A small and thin river\n SOUTHWEST - ??? There seems to be a light somewhere behind the trees\n WEST - Another small town.")
+        print("Cutting you some slack, here's what they said, in a simpler and easy way.\n NORTHWEST - A strange building\n NORTH - A huge river\n NORTHEAST - A small town\n EAST - A city\n SOUTH - A small and thin river\n SOUTHWEST - There seems to be a light somewhere behind the trees\n WEST - Another small town.")
         
-        except:
-          return "ok"
+      except:
+        return "ok"
