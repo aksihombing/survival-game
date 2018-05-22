@@ -90,3 +90,19 @@ class Game:
         
       except:
         return "ok"
+      
+  def onetwo(self):
+    while True:
+      try:
+        print("There's a river ahead of your group. Do you cross the river to go east, or go north?\n Enter 1 to cross, or 2 to go north.\n")
+        crossornot = int(input())
+        if int(crossornot) == int(1):
+          print("The water is really quick! Your group holds hands and tries to cross together.")
+          pause()
+          print("After some more shouting, you and your friends finally make it across, but at the cost of some supplies.")
+          return self.playerplace[0][2], supplies[water]-4, supplies[food]-6, supplies[money]-10
+        elif int(crossornot) == int(2):
+          print("Your group heads north instead")
+          return self.playerplace[1][1]
+      except:
+        return "ok"
