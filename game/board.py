@@ -18,6 +18,10 @@ class Game:
     self.playername = str(input("What is your name?:\n"))
     self.friend1 = str(input("What is the name of your first friend?\n"))
     self.friend2 = str(input("What is the name of your second friend?\n"))
+    self.supplies = {"food" : str(randint(10,30)), "water" : str(randint(15,30)), "money" : "${}".format(str(randint(10,30)))}
+    print("You have....\n {} food cans, {} water bottles, {} left.".format(self.supplies['food'],self.supplies['water'],self.supplies['money']))
+    return self.story()
+
   def __repr__(self):
     return "Game({})".format(self.state)
   
@@ -31,10 +35,7 @@ class Game:
     pause()
     print("One of your friends point out that they know of another base from radio transmissions. However, since there is no map, you and your friends must blindly travel together, hoping to come across the base. Also, the base, according to the radio transmissions, will also close under two months.")
     pause()
-    print("-----------------------------------------\n")
-    pause()
-    supplies = {"food" : str(randint(10,30)), "water" : str(randint(15,30)), "money" : "${}".format(str(randint(10,30)))}
-    print("You have....\n {} food cans, {} water bottles, {} left.".format(supplies['food'],supplies['water'],supplies['money']))
+    return self.twotwo()
   
   
   # TEMPORARY CODE (UNTESTED)
@@ -44,10 +45,14 @@ class Game:
       try:
         xchoice = int(input("Which way do you want to go? (1,2), (1,1), or (2,1)?\n row:"))
         ychoice = int(input("\n column:"))
-        if int(xchoice) == 2 or 1:
-          if int(ychoice) == 2 or 1:
-            if int(xchoice)+int(ychoice) == 3:
-              return self.playerplace == self.state[int(xchoice)][int(ychoice)]
+        if int(xchoice) == 2:
+          if int(ychoice) == 1:
+            return self.twoone()
+        elif int(xchoice) == 1:
+          if int(ychoice) == 1:
+            return self.oneone()
+          if int(ychoice) == 2:
+            return self.onetwo()
         else:
           raise IndexError
       except IndexError:
@@ -74,7 +79,7 @@ class Game:
           print("G A M E  O V E R")
           self.game_over == True
         elif int(continuechoice) == 2:
-          return self.playerplace == self.state[1][1]
+          return self.oneone()
       except:
         return
  
@@ -90,7 +95,6 @@ class Game:
         
       except:
         return "ok"
-      
   def onetwo(self):
     while True:
       try:
