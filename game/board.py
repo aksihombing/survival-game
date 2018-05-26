@@ -10,6 +10,7 @@ class Game:
   def __init__(self):
     self.state = [['[]','[]','[]'] for n in range(3)]
     self.game_over = False
+    self.party = {"Baton": True, "Roblox poster" :False }
 
   def __repr__(self):
     return "Game({})".format(self.state)
@@ -20,7 +21,7 @@ class Game:
   def story(self):
     print("It's been months since a virus spread. People who were infected died within hours, or at most, a few days, later. People's greed turned nearly everyone against each other.")
     pause()
-    print("The group that you were once with has recently turned against you in order to maintain more supplies. Your two good friends decide to join you, staying loyal to you. Upon your departure, they sent the three of you off with minimal supplies to survive about one month, yet no map.")
+    print("The group that you were once with has recently turned against you in order to maintain more supplies. Your two good friends decide to join you, staying loyal to you. Upon your departure, they sent the three of you off with minimal supplies to survive about one month, yet no map. However, they DID give you a baton... for the three of you to share. Nice.")
     pause()
     print("One of your friends point out that they know of another base from radio transmissions. However, since there is no map, you and your friends must blindly travel together, hoping to come across the base.")
     pause()
@@ -61,12 +62,27 @@ class Game:
           pause()
           print("Run far away! Please!' your conscious, sick friend shouts.")
           pause()
-          print("Sucks to be you, huh? It gets worse, too. In an attempt to flee, you hadn't been paying attention to where you ran. You turn around and see a horde of infected people chasing after you, the only healthy person around.")
-          pause()
-          print("G A M E  O V E R")
-          self.game_over == True
-          break
-        elif int(continuechoice) == 2:
+          if self.party["Baton"] == True:
+            print("Wait! You have a baton! That's good...Right?")
+            pause()
+            print("Well, congrats! You've fled from the city and your dead friends! How loyal!")
+            pause()
+            print("It seems you're on your own.. That's unfortunate. On the bright side, you seem to do so well on your own! You live!.... for a month, until you find yourself at the wrong place in the wrong time...")
+            pause()
+            print("Congrats! You get the Not-So-Bad ending!")
+            pause()
+            print("It's an easy ending, but nonetheless, the goal was to get to a base, so...")
+            pause()
+            print("YOU LOSE")
+            return self.game_over == False
+            break
+          else:
+            print("Sucks to be you, huh? It gets worse, too. In an attempt to flee, you hadn't been paying attention to where you ran. You turn around and see a horde of infected people chasing after you, the only healthy person around.")
+            pause()
+            print("G A M E  O V E R")
+            self.game_over == True
+            break
+        if int(continuechoice) == 2:
           return self.oneone()
         else:
           raise ValueError
@@ -77,6 +93,18 @@ class Game:
   def oneone(self):
     while True:
       try:
+        print("You all unanimously decide to set up camp in this area for the night. The three of you drew straws to see who's on watch, and luckily it wasn't you. You got pretty decent sleep that night.")
+        pause()
+        print("'Hey! Look what I got!' your friend who was on watch says. They hold up a Roblox poster.")
+        robloxposter = int(input("Do you:\n 1.)Keep it\n 2.)Throw it out?"))
+        if int(robloxposter) == 1:
+          print("Nice choice! What will this do, though?")
+          return self.party["Roblox poster"] == True
+        elif int(robloxposter) == 2:
+          print("Well, okay then. Rude.")
+          return self.party["Roblox poster"] == False
+        else:
+          raise ValueError
         print("'There seems to be many ways to go from here!' your friend cheerfully says.")
         pause()
         print("They go on and on and ON, describing the surroundings, other than the boring trees.")
@@ -99,7 +127,6 @@ class Game:
           return self.zeroone()
         else:
           raise ValueError
-        
       except:
         return "Error. Please try again."
 
@@ -123,7 +150,7 @@ class Game:
           pause()
           print("Y O U  L O S E :) ")
           self.game_over = True
-        if int(direction1) == 2 :
+        elif int(direction1) == 2 :
           return self.twozero()
         elif int(direction1) == 3 :
           return self.oneone()
@@ -162,7 +189,7 @@ class Game:
         pause()
         approach = int(input("Do you\n 1.)Approach the light\n 2.)Go north instead, where there seems to be a building.\n"))
         if int(approach) == 1:
-          print("When you approach the light source, you realize it's a campfire. You were trying to get a better look from behind a tree when you stepped on a twig. Rookie mistake.")
+          print("When you approach the light source, you realize it's a campfire. You were trying to get a better look from behind a tree when you stepped on a twig. Rookie mistake. You were too outnumbered to even dare to pull out your party's only weapon-- the baton.")
           pause()
           print("'Who's there?' one of the mysterious men with a mouth mask shouted. The other around him held their weapons ready.")
           speakordie = int(input("This seems like a tight situation. They don't seem too friendly. Do you\n 1.)Wait until they find you\n 2.)Reveal yourself and try to join their group\n"))
@@ -219,15 +246,21 @@ class Game:
           pause()
           print("Is that..? It's a roblox character...? Before you have time to process why there's a working smartphone and why the image is of a Roblox character, you turn around to see...")
           pause()
-          print("a guy wearing colored cardboard boxes like the Roblox character in the picture..? W-what is going on?")
-          pause()
-          print("O-Oh..It seems that you and your friends were taken by the Roblox man, never to return.")
-          pause()
-          print("Well sucks to be you, huh?")
-          pause()
-          print("YOU LOSE")
-          return self.game_over==True
-          break
+          if self.party["Roblox poster"] == True:
+            print("You quickly pull out your handy Roblox poster. He seems pretty happy! He grabs the poster from you and you come out of the house alive!")
+            pause()
+            print("He's kind enough to write a note, saying that going north from there will lead to a safe place! You follow his directions and go north.")
+            return self.zerozero()
+          else:
+            print("a guy wearing colored cardboard boxes like the Roblox character in the picture..? W-what is going on?")
+            pause()
+            print("O-Oh..It seems that you and your friends were taken by the Roblox man, never to return.")
+            pause()
+            print("Well sucks to be you, huh?")
+            pause()
+            print("YOU LOSE")
+            return self.game_over==True
+            break
         else:
           raise ValueError
       except:
@@ -243,8 +276,9 @@ class Game:
         if int(crossornot) == int(1):
           print("The water is really quick! Your group holds hands and tries to cross together.")
           pause()
-          print("After some more shouting, you and your friends finally make it across!")
+          print("After some more shouting, you and your friends finally make it across! Sadly, you have lost your only weapon!")
           pause()
+          self.party["Baton"] = False
           return self.zerotwo()
         elif int(crossornot) == int(2):
           print("Your group heads north instead")
