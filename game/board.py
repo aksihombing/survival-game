@@ -39,7 +39,7 @@ class Game:
         elif int(firstchoice) == 2:
           return self.onetwo()
         elif int(firstchoice) == 3:
-          return self.oneone()
+          return self.poster()
         else:
           raise ValueError
       except:
@@ -83,28 +83,37 @@ class Game:
             self.game_over == True
             break
         if int(continuechoice) == 2:
-          return self.oneone()
+          return self.poster()
         else:
           raise ValueError
       except:
         return "Error. Please try again."
  
  
-  def oneone(self):
+  def poster(self):
     while True:
       try:
         print("You all unanimously decide to set up camp in this area for the night. The three of you drew straws to see who's on watch, and luckily it wasn't you. You got pretty decent sleep that night.")
         pause()
         print("'Hey! Look what I got!' your friend who was on watch says. They hold up a Roblox poster.")
-        robloxposter = int(input("Do you:\n 1.)Keep it\n 2.)Throw it out?"))
+        robloxposter = int(input("Do you:\n 1.)Keep it\n 2.)Throw it out?\n"))
         if int(robloxposter) == 1:
           print("Nice choice! What will this do, though?")
-          return self.party["Roblox poster"] == True
+          pause()
+          return self.party["Roblox poster"] == True, self.oneone()
         elif int(robloxposter) == 2:
           print("Well, okay then. Rude.")
-          return self.party["Roblox poster"] == False
+          pause()
+          return self.party["Roblox poster"] == False, self.oneone()
         else:
           raise ValueError
+      except:
+        return "Error. Please try again."
+  
+  
+  def oneone(self):
+    while True:
+      try:
         print("'There seems to be many ways to go from here!' your friend cheerfully says.")
         pause()
         print("They go on and on and ON, describing the surroundings, other than the boring trees.")
@@ -153,7 +162,7 @@ class Game:
         elif int(direction1) == 2 :
           return self.twozero()
         elif int(direction1) == 3 :
-          return self.oneone()
+          return self.poster()
         else:
           raise ValueError
       except:
@@ -167,7 +176,7 @@ class Game:
         print("You approach a building ahead of you, curious and afraid of what's to come.")
         pause()
         print("An old lady appears in front of you, with armed people behind her. She gives you one look and decides to run at you with her cane.")
-        runorstay = int(input("What do you do? Do you\n 1.)run west\n 2.)Wait and see what happens"))
+        runorstay = int(input("What do you do? Do you\n 1.)run west\n 2.)Wait and see what happens\n"))
         if int(runorstay) == 1:
           pause()
           return self.onezero()
@@ -178,7 +187,7 @@ class Game:
           pause()
           print("YOU L O S E")
           return self.game_over == True
-          break
+          
       except:
         return "Error. Please try again."
   
@@ -237,7 +246,7 @@ class Game:
           pause()
           print("Before you have time to react, the front door is slammed shut, sending you bad vibes. Your friends quickly drag you east with them.")
           pause()
-          return self.oneone()
+          return self.poster()
         elif int(leftright) == 2:
           pause()
           print("Oh? There's a staircase leading down into a basement!")
@@ -283,7 +292,7 @@ class Game:
         elif int(crossornot) == int(2):
           print("Your group heads north instead")
           pause()
-          return self.oneone()
+          return self.poster()
         else:
           raise ValueError
       except:
