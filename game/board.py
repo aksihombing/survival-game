@@ -8,20 +8,20 @@ class Game:
   
   
   def __init__(self):
-    self.state = [['[]','[]','[]'] for n in range(3)]
+    self.state = ()
     self.game_over = False
-    self.party = {"Baton": True, "Roblox poster" :False }
+    self.party = {"Baton": True, "Roblox poster" :False, 
+    "Gun": False}
+
 
   def __repr__(self):
     return "Game({})".format(self.state)
   
-  def __str__(self):
-    return "{} {} {}\n{} {} {}\n{} {} {}\n".format(*self.state)
 
   def story(self):
     print("It's been months since a virus spread. People who were infected died within hours, or at most, a few days, later. People's greed turned nearly everyone against each other.")
     pause()
-    print("The group that you were once with has recently turned against you in order to maintain more supplies. Your two good friends decide to join you, staying loyal to you. Upon your departure, they sent the three of you off with minimal supplies to survive about one month, yet no map. However, they DID give you a baton... for the three of you to share. Nice.")
+    print("The group that you were once with has recently turned against you in order to maintain more supplies. Your two good friends decide to join you, staying loyal to you. Upon your departure, they sent the three of you off with minimal supplies to survive, yet no map. However, they DID give you a baton... for the three of you to share. Nice.")
     pause()
     print("One of your friends point out that they know of another base from radio transmissions. However, since there is no map, you and your friends must blindly travel together, hoping to come across the base.")
     pause()
@@ -42,7 +42,7 @@ class Game:
           return self.poster()
         else:
           raise ValueError
-      except:
+      except ValueError:
         print("Please choose from the given")
   
   def twoone(self):
@@ -82,7 +82,7 @@ class Game:
             print("G A M E  O V E R")
             self.game_over == True
             break
-        if int(continuechoice) == 2:
+        elif int(continuechoice) == 2:
           return self.poster()
         else:
           raise ValueError
@@ -100,11 +100,13 @@ class Game:
         if int(robloxposter) == 1:
           print("Nice choice! What will this do, though?")
           pause()
-          return self.party["Roblox poster"] == True, self.oneone()
+          self.party["Roblox poster"] = True
+          return self.oneone()
         elif int(robloxposter) == 2:
           print("Well, okay then. Rude.")
           pause()
-          return self.party["Roblox poster"] == False, self.oneone()
+          self.party["Roblox poster"] = False
+          return self.oneone()
         else:
           raise ValueError
       except:
@@ -142,12 +144,15 @@ class Game:
   def onezero(self):
     while True:
       try:
+        print("'Hey! Look!' your friend calls out ahead of you. It's a gun, but it has no ammo. You take it in case you come across ammo later on.")
+        pause()
         print("To the west, there seems to be a river.")
-        direction1 = int(input("Do you want to\n 1.)Cross the river to the west 2.)Travel east instead\n 3.)Travel south"))
+        pause()
+        direction1 = int(input("Do you want to:\n 1.)Cross the river to the west\n 2.)Travel east instead\n 3.)Travel south\n"))
         if int(direction1) == 1 :
           print("\n The river appears to be stronger than you thought! The current is too strong and fast, and before you realize it's nearly impossible to cross...")
           pause()
-          print("You and your friends get taken by the    current! Oh no!")
+          print("You and your friends get taken by the current! Oh no!")
           pause()
           print("By the time you get to land, you get separated from your friends. And what's worse?")
           pause()
@@ -159,6 +164,7 @@ class Game:
           pause()
           print("Y O U  L O S E :) ")
           self.game_over = True
+          break
         elif int(direction1) == 2 :
           return self.twozero()
         elif int(direction1) == 3 :
@@ -176,18 +182,32 @@ class Game:
         print("You approach a building ahead of you, curious and afraid of what's to come.")
         pause()
         print("An old lady appears in front of you, with armed people behind her. She gives you one look and decides to run at you with her cane.")
-        runorstay = int(input("What do you do? Do you\n 1.)run west\n 2.)Wait and see what happens\n"))
-        if int(runorstay) == 1:
+        if self.party["Gun"] == True:
           pause()
-          return self.onezero()
-        elif int(runorstay) == 2:
-          print("W-wow, that was unexpected. She swung at you and knocked your whole group out!")
+          print("You quickly pull out your empty gun and point it at her. You were clearly bluffing, but this gave you a little bit of a chance to survive.")
           pause()
-          print("Looks like you made the wrong choice...\n When you wake up, you're being... SACRIFICED? Well, uh, you're involved with a cult now-- actually, not really 'involved'-- more like being sacrificed by them. Niiiiiiiiice...")
+          print("Everyone stops. You begin to make a compromise ")
           pause()
-          print("YOU L O S E")
-          return self.game_over == True
-          
+          print("They let you head west in peace.")
+        else:
+          runorstay = int(input("What do you do?\n 1.)Run west\n 2.)Wait and see what happens\n"))
+          if int(runorstay) == 1:
+            pause()
+            print("You try to run, but it seems like there were more hiding in the trees behind you.")
+            pause()
+            print("You never made it out of there alive.")
+            pause()
+            print("YOU LOSE")
+            return self.game_over == True
+            break
+          elif int(runorstay) == 2:
+            print("W-wow, that was unexpected. She swung at you and knocked your whole group out!")
+            pause()
+            print("Looks like you made the wrong choice...\n She knocked you pretty hard, and you never woke up.")
+            pause()
+            print("YOU L O S E")
+            return self.game_over == True
+            break
       except:
         return "Error. Please try again."
   
@@ -239,7 +259,7 @@ class Game:
       try:
         print("There's a small building in front of you. One of your friends drag you inside. The further you walk into it, the colder it feels. You get chills down your spine and goosebumps.")
         pause()
-        leftright=int(input("You get to a hallway with two doors. Where do you go?\n 1.)Left\n 2.)Right"))
+        leftright=int(input("You get to a hallway with two doors. Where do you go?\n 1.)Left\n 2.)Right\n"))
         if int(leftright) == 1:
           pause()
           print("After walking through the left door, you walk into another hallway, which leads you.. outside?")
@@ -255,13 +275,14 @@ class Game:
           pause()
           print("Is that..? It's a roblox character...? Before you have time to process why there's a working smartphone and why the image is of a Roblox character, you turn around to see...")
           pause()
+          print("a guy wearing colored cardboard boxes like the Roblox character in the picture..? W-what is going on?")
           if self.party["Roblox poster"] == True:
+            pause()
             print("You quickly pull out your handy Roblox poster. He seems pretty happy! He grabs the poster from you and you come out of the house alive!")
             pause()
             print("He's kind enough to write a note, saying that going north from there will lead to a safe place! You follow his directions and go north.")
             return self.zerozero()
           else:
-            print("a guy wearing colored cardboard boxes like the Roblox character in the picture..? W-what is going on?")
             pause()
             print("O-Oh..It seems that you and your friends were taken by the Roblox man, never to return.")
             pause()
@@ -274,9 +295,7 @@ class Game:
           raise ValueError
       except:
         return "Error. Please try again."
-
-
-
+        
   def onetwo(self):
     while True:
       try:
@@ -285,9 +304,11 @@ class Game:
         if int(crossornot) == int(1):
           print("The water is really quick! Your group holds hands and tries to cross together.")
           pause()
-          print("After some more shouting, you and your friends finally make it across! Sadly, you have lost your only weapon!")
+          print("After some more shouting, you and your friends finally make it across! Sadly, you lost everything you have, other than food and water!")
           pause()
           self.party["Baton"] = False
+          self.party["Gun"] = False
+          self.party["Poster"] = False
           return self.zerotwo()
         elif int(crossornot) == int(2):
           print("Your group heads north instead")
@@ -312,3 +333,4 @@ class Game:
     pause()
     print("You have successfully arrived at the base!\n CONGRATULATIONS!\n YOU WIN")
     return self.game_over == True
+
