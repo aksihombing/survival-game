@@ -11,7 +11,7 @@ class Game:
     self.state = ()
     self.game_over = False
     self.party = {"Baton": True, "Roblox poster" :False, 
-    "Gun": False}
+    "Gun": False, "Map" : False}
 
 
   def __repr__(self):
@@ -33,7 +33,7 @@ class Game:
   def twotwo(self):
     while True:
       try:
-        firstchoice = int(input("Which way do you wish to go?\n 1.)North: a city\n 2.)East: a river\n 3.)Northeast: nothing but trees!\n"))
+        firstchoice = int(input("Which way do you wish to go?\n 1.)North: a city\n 2.)East: a river\n 3.)Northeast: nothing but trees!\n Please enter the NUMBER of your choice\n"))
         if int(firstchoice) == 1:
           return self.twoone()
         elif int(firstchoice) == 2:
@@ -89,7 +89,6 @@ class Game:
       except:
         return "Error. Please try again."
  
- 
   def poster(self):
     while True:
       try:
@@ -109,9 +108,8 @@ class Game:
           return self.oneone()
         else:
           raise ValueError
-      except:
+      except ValueError:
         return "Error. Please try again."
-  
   
   def oneone(self):
     while True:
@@ -138,7 +136,7 @@ class Game:
           return self.zeroone()
         else:
           raise ValueError
-      except:
+      except ValueError:
         return "Error. Please try again."
 
   def onezero(self):
@@ -171,11 +169,9 @@ class Game:
           return self.poster()
         else:
           raise ValueError
-      except:
+      except ValueError:
         return "Error. Please try again."
 
-    
-  
   def twozero(self):
     while True:
       try:
@@ -208,7 +204,7 @@ class Game:
             print("YOU L O S E")
             return self.game_over == True
             break
-      except:
+      except ValueError:
         return "Error. Please try again."
   
   def zerotwo(self):
@@ -251,7 +247,7 @@ class Game:
           return self.zeroone()
         else:
           raise ValueError
-      except:
+      except ValueError:
         return "Error. Please try again."
   
   def zeroone(self):
@@ -293,7 +289,7 @@ class Game:
             break
         else:
           raise ValueError
-      except:
+      except ValueError:
         return "Error. Please try again."
         
   def onetwo(self):
@@ -309,6 +305,7 @@ class Game:
           self.party["Baton"] = False
           self.party["Gun"] = False
           self.party["Poster"] = False
+          self.party["Map"] = False
           return self.zerotwo()
         elif int(crossornot) == int(2):
           print("Your group heads north instead")
@@ -316,7 +313,7 @@ class Game:
           return self.poster()
         else:
           raise ValueError
-      except:
+      except ValueError:
         return "Error. Please try again."
 
   # ------------- W I N ----------------
@@ -332,5 +329,4 @@ class Game:
     print("The gates slowly open and the three of you ran with all your energy to get inside.")
     pause()
     print("You have successfully arrived at the base!\n CONGRATULATIONS!\n YOU WIN")
-    return self.game_over == True
-
+    self.game_over = True
