@@ -1,3 +1,4 @@
+
 # Helper Functions---------------
 def pause():
   input()  
@@ -9,7 +10,6 @@ class Game:
   
   def __init__(self):
     self.state = ()
-    self.game_over = False
     self.party = {"Baton": True, "Roblox poster" :False, 
     "Gun": False, "Map" : False}
 
@@ -19,6 +19,8 @@ class Game:
   
 
   def story(self):
+    print("**Press ENTER to continue the text.")
+    pause()
     print("It's been months since a virus spread. People who were infected died within hours, or at most, a few days, later. People's greed turned nearly everyone against each other.")
     pause()
     print("The group that you were once with has recently turned against you in order to maintain more supplies. Your two good friends decide to join you, staying loyal to you. Upon your departure, they sent the three of you off with minimal supplies to survive, yet no map. However, they DID give you a baton... for the three of you to share. Nice.")
@@ -33,7 +35,7 @@ class Game:
   def twotwo(self):
     while True:
       try:
-        firstchoice = int(input("Which way do you wish to go?\n 1.)North: a city\n 2.)East: a river\n 3.)Northeast: nothing but trees!\n Please enter the NUMBER of your choice\n"))
+        firstchoice = int(input("Which way do you wish to go?\n 1.)North: a city\n 2.)East: a river\n 3.)Northeast: nothing but trees!\n \n Please enter the NUMBER of your choice:\n"))
         if int(firstchoice) == 1:
           return self.twoone()
         elif int(firstchoice) == 2:
@@ -42,8 +44,8 @@ class Game:
           return self.poster()
         else:
           raise ValueError
-      except ValueError:
-        print("Please choose from the given")
+      except:
+        print("\n \n **Please choose from the given**\n")
   
   def twoone(self):
     while True:
@@ -74,20 +76,18 @@ class Game:
             print("It's an easy ending, but nonetheless, the goal was to get to a base, so...")
             pause()
             print("YOU LOSE")
-            return self.game_over == False
             break
           else:
             print("Sucks to be you, huh? It gets worse, too. In an attempt to flee, you hadn't been paying attention to where you ran. You turn around and see a horde of infected people chasing after you, the only healthy person around.")
             pause()
             print("G A M E  O V E R")
-            self.game_over == True
             break
         elif int(continuechoice) == 2:
           return self.poster()
         else:
           raise ValueError
       except:
-        return "Error. Please try again."
+        print("\n Error. Please try again.\n")
  
   def poster(self):
     while True:
@@ -108,8 +108,8 @@ class Game:
           return self.oneone()
         else:
           raise ValueError
-      except ValueError:
-        return "Error. Please try again."
+      except:
+        print("\n Error. Please try again.\n")
   
   def oneone(self):
     while True:
@@ -136,8 +136,8 @@ class Game:
           return self.zeroone()
         else:
           raise ValueError
-      except ValueError:
-        return "Error. Please try again."
+      except:
+        print("\n Error. Please try again.\n")
 
   def onezero(self):
     while True:
@@ -169,8 +169,8 @@ class Game:
           return self.poster()
         else:
           raise ValueError
-      except ValueError:
-        return "Error. Please try again."
+      except:
+        print("\n Error. Please try again.\n")
 
   def twozero(self):
     while True:
@@ -194,7 +194,6 @@ class Game:
             print("You never made it out of there alive.")
             pause()
             print("YOU LOSE")
-            return self.game_over == True
             break
           elif int(runorstay) == 2:
             print("W-wow, that was unexpected. She swung at you and knocked your whole group out!")
@@ -202,10 +201,11 @@ class Game:
             print("Looks like you made the wrong choice...\n She knocked you pretty hard, and you never woke up.")
             pause()
             print("YOU L O S E")
-            return self.game_over == True
             break
-      except ValueError:
-        return "Error. Please try again."
+          else:
+            raise ValueError
+      except:
+        print("\n Error. Please try again.\n")
   
   def zerotwo(self):
     while True:
@@ -223,7 +223,6 @@ class Game:
             print("It wasn't long until they spotted you all creeping on them. They didn't seem to enjoy being spied on, like many people. They were very 'defensive' and attacked. Let's spare you the details--")
             pause()
             print("YOU L O S E")
-            return self.game_over == True
             break
           elif int(speakordie) == 2:
             pause()
@@ -240,15 +239,15 @@ class Game:
             print("After getting sick from the polluted water, it's safe to say that you, and a few others, died. Maybe you shouldn't go vegan next time-- but that's just me.")
             pause()
             print("YOU....LOSE?")
-            return self.game_over == True
+            break
           else:
-            raise ValueError
+            raise TypeError
         elif int(approach) == 2:
           return self.zeroone()
         else:
           raise ValueError
-      except ValueError:
-        return "Error. Please try again."
+      except:
+        print("\n Error. Please try again.\n")
   
   def zeroone(self):
     while True:
@@ -285,12 +284,11 @@ class Game:
             print("Well sucks to be you, huh?")
             pause()
             print("YOU LOSE")
-            return self.game_over==True
             break
         else:
           raise ValueError
-      except ValueError:
-        return "Error. Please try again."
+      except:
+        print("\n Error. Please try again.\n")
         
   def onetwo(self):
     while True:
@@ -313,8 +311,8 @@ class Game:
           return self.poster()
         else:
           raise ValueError
-      except ValueError:
-        return "Error. Please try again."
+      except:
+        print("\n Error. Please try again.\n")
 
   # ------------- W I N ----------------
   def zerozero(self):
@@ -329,4 +327,3 @@ class Game:
     print("The gates slowly open and the three of you ran with all your energy to get inside.")
     pause()
     print("You have successfully arrived at the base!\n CONGRATULATIONS!\n YOU WIN")
-    self.game_over = True
