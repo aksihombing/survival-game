@@ -10,8 +10,9 @@ class Game:
   
   def __init__(self):
     self.state = ()
-    self.party = {"Baton": True, "Roblox poster" :False, 
-    "Gun": False}
+    self.party = {"Roblox poster" :False, 
+    "Gun": False, "Ammo": False, "Baton": True,}
+
 
 
   def __repr__(self):
@@ -21,9 +22,9 @@ class Game:
   def story(self):
     print("It's been months since a virus spread. People who were infected died within hours, or at most, a few days, later. People's greed turned nearly everyone against each other.")
     pause()
-    print("The group that you were once with has recently turned against you in order to maintain more supplies. Your two good friends decide to join you, staying loyal to you. Upon your departure, they sent the three of you off with minimal supplies to survive, yet no map. However, they DID give you a baton... for the three of you to share. Nice.")
-    pause()
-    print("One of your friends point out that they know of another base from radio transmissions. However, since there is no map, you and your friends must blindly travel together, hoping to come across the base.")
+    print("The group that you were once with has recently turned against you in order to maintain more supplies. Your two good friends decide to join you, staying loyal to you. Upon your departure, they sent the three of you off with minimal supplies to survive, yet no map. However, they DID give you a baton.\n\nYour friend knows that there's another base elsewhere.. but where is it?\n\n")
+    print("------------------------------------------")
+    print("YOUR GOAL:\n  Find the base.")
     pause()
     return self.twotwo()
   
@@ -86,8 +87,6 @@ class Game:
       except:
         print("\n Error. Please try again.\n")
  
-
- ##############
   def poster(self):
     print("You all unanimously decide to set up camp in this area for the night. The three of you drew straws to see who's on watch, and luckily it wasn't you. You got pretty decent sleep that night.")
     pause()
@@ -110,7 +109,6 @@ class Game:
       except:
         print("\n Error. Please try again.\n")
   
-  ############
   def oneone(self):
     print("'There seems to be many ways to go from here!' your friend cheerfully says.")
     pause()
@@ -139,7 +137,6 @@ class Game:
       except:
         print("\n Error. Please try again.\n")
 
-##########
   def onezero(self):
     print("'Hey! Look!' your friend calls out ahead of you. It's a gun, but it has no ammo. You take it in case you come across ammo later on.")
     pause()
@@ -161,7 +158,7 @@ class Game:
           pause()
           print(".... You end up getting infected. Well, on the bright side, you make friends with other infected people. That's good...right?")
           pause()
-          print("Y O U  L O S E :) ")
+          print("YOU LOSE")
           self.game_over = True
           break
         elif int(direction1) == 2 :
@@ -173,8 +170,6 @@ class Game:
       except:
         print("\n Error. Please try again.\n")
 
-
-#####
   def twozero(self):
     print("You approach a building ahead of you, curious and afraid of what's to come.")
     pause()
@@ -201,15 +196,24 @@ class Game:
             pause()
             print("Looks like you made the wrong choice...\n She knocked you pretty hard, and you never woke up.")
             pause()
-            print("YOU L O S E")
+            print("YOU LOSE")
             break
           else:
             raise ValueError
         except:
           print("\n Error. Please try again.\n")
   
-  ########
   def zerotwo(self):
+    ammochoice = int(input("While you group travels, you find some ammo. Do you pick it up?\n 1.)Yes\n 2.)No\n"))
+    if int(ammochoice) == 1:
+      print("You put the ammo into your bag and continue on.")
+      self.party["Ammo"] = True
+      return self.zerotwocont()
+    elif int(ammochoice) == 2:
+      print("You shrug and walk forward.")
+      return self.zerotwocont()
+  
+  def zerotwocont(self):
     print("There's a mysterious light somewhere in the trees. What could it be?")
     pause()
     approach = int(input("Do you\n 1.)Approach the light\n 2.)Go north instead, where there seems to be a building.\n"))
@@ -218,37 +222,42 @@ class Game:
         if int(approach) == 1:
           print("When you approach the light source, you realize it's a campfire. You were trying to get a better look from behind a tree when you stepped on a twig. Rookie mistake. You were too outnumbered to even dare to try to attack.")
           pause()
-          print("'Who's there?' one of the mysterious men with a mouth mask shouted. The other around him held their weapons ready.\n")
-          speakordie = int(input("This seems like a tight situation. They don't seem too friendly. Do you\n 1.)Wait until they find you\n 2.)Reveal yourself and try to join their group\n"))
-          if int(speakordie) == 1:
-            print("It wasn't long until they spotted you all creeping on them. They didn't seem to enjoy being spied on, like many people. They were very 'defensive' and attacked. Let's spare you the details--")
-            pause()
-            print("YOU L O S E")
-            break
-          elif int(speakordie) == 2:
-            print("You first walked out from behind the trees. Your friends were quick to follow you, though reluctant to throw down their weapons just as you did.")
-            pause()
-            print("'We mean no harm! We were looking for a new place to stay!' you tried to explain with your hands up. The group before you gave each other looks. They all lifted up their masks and nodded, smiling.")
-            pause()
-            print("'Welcome to the club!' they all said in unison. Turns out they were a group of really nice vegans who decided to look more aggressive to avoid hurting anyone.")
-            pause()
-            print("Um-- Oh! It looks like you're a vegan now! Erm...Congrats?")
-            pause()
-            print("Well, that didn't last long, either. After about three weeks with them, you drank some nasty water from the nasty, polluted river. They were pretty strict on leaving the fish in the clean water alone, so you all didn't have much of a choice.")
-            pause()
-            print("After getting sick from the polluted water, it's safe to say that you, and a few others, died. Maybe you shouldn't go vegan next time-- but that's just me.")
-            pause()
-            print("YOU....LOSE?")
-            break
+          if self.party["Gun"] == True:
+            if self.party["Ammo"] == True:
+              print("You quickly pull out your gun and aim it at them. To intimidate them, you shoot in the air. They stop immediately and you shout that you are leaving in 'peace'. You back away and head north.")
+              return self.zeroone()
           else:
-            raise TypeError
+            print("'Who's there?' one of the mysterious men with a mouth mask shouted. The other around him held their weapons ready.\n")
+            speakordie = int(input("This seems like a tight situation. They don't seem too friendly. Do you\n 1.)Wait until they find you\n 2.)Reveal yourself and try to join their group\n"))
+            if int(speakordie) == 1:
+              print("It wasn't long until they spotted you all creeping on them. They didn't seem to enjoy being spied on, like many people. They were very 'defensive' and attacked. Let's spare you the details--")
+              pause()
+              print("YOU L O S E")
+              break
+            elif int(speakordie) == 2:
+              print("You first walked out from behind the trees. Your friends were quick to follow you, though reluctant to throw down their weapons just as you did.")
+              pause()
+              print("'We mean no harm! We were looking for a new place to stay!' you tried to explain with your hands up. The group before you gave each other looks. They all lifted up their masks and nodded, smiling.")
+              pause()
+              print("'Welcome to the club!' they all said in unison. Turns out they were a group of really nice vegans who decided to look more aggressive to avoid hurting anyone.")
+              pause()
+              print("Um-- Oh! It looks like you're a vegan now! Erm...Congrats?")
+              pause()
+              print("Well, that didn't last long, either. After about three weeks with them, you drank some nasty water from the nasty, polluted river. They were pretty strict on leaving the fish in the clean water alone, so you all didn't have much of a choice.")
+              pause()
+              print("After getting sick from the polluted water, it's safe to say that you, and a few others, died. Maybe you shouldn't go vegan next time-- but that's just me.")
+              pause()
+              print("YOU....LOSE?")
+              break
+            else:
+              raise TypeError
         elif int(approach) == 2:
           return self.zeroone()
         else:
           raise ValueError
       except:
         print("\n Error. Please try again.\n")
-  ######
+  
   def zeroone(self):
       print("There's a small building in front of you. One of your friends drag you inside. The further you walk into it, the colder it feels. You get chills down your spine and goosebumps.")
       pause()
@@ -300,7 +309,7 @@ class Game:
           self.party["Baton"] = False
           self.party["Gun"] = False
           self.party["Poster"] = False
-          self.party["Map"] = False
+          self.party["Ammo"] = False
           return self.zerotwo()
         elif int(crossornot) == int(2):
           print("Your group heads north instead")
@@ -313,16 +322,45 @@ class Game:
 
   # ------------- W I N ----------------
   def zerozero(self):
-    print("After countless hours of losing sleep, having to ration whatever was left of your supplies, you have finally reached a less horrifying building.")
+    print("In front of you is a large building-- a base!")
     pause()
-    print("'Hey! Are you survivors? Are any of you infected?' someone shouts at the top of the wall in front of you. You and your friends nod very quickly.")
+    print("They welcome you into their base, but there's a catch.")
     pause()
-    print("The man at the top seems to just stand and stare at you all. After about a few seconds, he says....")
+    print("They put you, the leader of your group, in a room alone. In front of you is a table. There are items, and it is your job to guess the celebrity.")
     pause()
-    print("'Well, come on in!'")
-    pause()
-    print("The gates slowly open and the three of you ran with all your energy to get inside.")
-    pause()
-    print("You have successfully arrived at the base!\n CONGRATULATIONS!\n YOU WIN")
-
+    return self.zzguess()
   
+  def zzguess(self):
+    items = {"sticky note": "\n------------------\nIt's a blue sticky note and it says:\n 'AP: Twenty-six years ago, you played a game with a little boy down the street. A game with drums.'\n", "watch": "\n------------------\nThe time says '7:21' and doesn't seem to change at all. On the inside, the letters 'R' and 'W' are engraved in gold.\n", "stuffed animal": "\n------------------\nIt's a rockhopper penguin! How cute!\nDid you know that 'Rockhopper' is also the name of the red captain in Club Penguin? Totally unrelated, but interesting.\n" , "antique": "\n------------------\nIt's a golden lamp! It looks like a genie lamp, actually. There's a note inside that says 'Ten thousand years will give you such a crick in the neck!'. How strange.\n"}
+    guess = "guess"
+    print("ITEMS:\n -sticky note\n -watch\n -stuffed animal\n -antique")
+    while True:
+      try:
+        inspect = str(input("What item do you want to inspect?\n(Enter 'guess' if you would like to guess.')\n"))
+        if str(inspect) in items:
+          print(items[str(inspect)])
+        elif str(inspect) == str(guess):
+          gchoice = int(input("They give you a list of people to choose from:\n 1.)Gene Wilder\n 2.)Robin Wright\n 3.)Robin Williams\n 4.)Johnny Depp\n"))
+          if int(ghoice) == 3:
+            print("Correct! They allow you and your friends into the base because of your knowledge.")
+            pause()
+            print("Congrats! You win!")
+          elif int(ghoice) == 2:
+            print("WRONG! They deny you access of entering their base AND they take all your supplies.")
+            pause()
+            print("YOU LOSE")
+          elif int(ghoice) == 4:
+            print("WRONG! They deny you access of entering their base AND they take all your supplies.")
+            pause()
+            print("YOU LOSE")
+          elif int(ghoices) == 1:
+            print("WRONG! They deny you access of entering their base AND they take all your supplies.")
+            pause()
+            print("YOU LOSE")
+          else:
+            raise ValueError
+        else:
+          raise ValueError
+      except:
+        print("Please try again.")
+        return self.zerozero()
