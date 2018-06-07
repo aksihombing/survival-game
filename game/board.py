@@ -34,13 +34,11 @@ class Game:
   def twotwo(self):
     while True:
       try:
-        firstchoice = int(input("Which way do you wish to go?\n 1.)North: a city\n 2.)East: a river\n 3.)Northeast: nothing but trees!\n \n Please enter the NUMBER of your choice:\n"))
+        firstchoice = int(input("Which way do you wish to go?\n 1.)North: a city\n 2.)East: a river\n \n Please enter the NUMBER of your choice:\n"))
         if int(firstchoice) == 1:
           return self.twoone()
         elif int(firstchoice) == 2:
           return self.onetwo()
-        elif int(firstchoice) == 3:
-          return self.poster()
         else:
           raise ValueError
       except:
@@ -114,7 +112,7 @@ class Game:
     pause()
     print("They go on and on and ON, describing the surroundings, other than the boring trees.")
     pause()
-    print("Cutting you some slack, here's what they said, in a simpler and easy way.\n 1.)NORTHWEST - A strange building\n 2.)NORTH - A huge river\n 3.)NORTHEAST - A small town\n 4.)EAST - A city\n 5.)SOUTH - A small and thin river\n 6.)SOUTHWEST - There seems to be a light somewhere behind the trees\n 7.)WEST - Another small town.\n")
+    print("Cutting you some slack, here's what they said, in a simpler and easy way.\n 1.)NORTHWEST - A  building\n 2.)NORTH - A huge river\n 3.)NORTHEAST - A small town\n 4.)EAST - A city\n 5.)SOUTH - A small and thin river\n 6.)SOUTHWEST - There seems to be a light somewhere behind the trees\n 7.)WEST - Another building\n")
     while True:
       try:    
         direction = int(input("Enter the number of the direction you wish to travel to:\n"))
@@ -336,24 +334,24 @@ class Game:
     print("ITEMS:\n -sticky note\n -watch\n -stuffed animal\n -antique")
     while True:
       try:
-        inspect = str(input("What item do you want to inspect?\n(Enter 'guess' if you would like to guess.')\n"))
+        inspect = str(input("What item do you want to inspect?\n(Enter 'guess' if you would like to guess.')\n\n"))
         if str(inspect) in items:
           print(items[str(inspect)])
         elif str(inspect) == str(guess):
-          gchoice = int(input("They give you a list of people to choose from:\n 1.)Gene Wilder\n 2.)Robin Wright\n 3.)Robin Williams\n 4.)Johnny Depp\n"))
-          if int(ghoice) == 3:
+          gchoice = int(input("\n\nThey give you a list of people to choose from:\n 1.)Gene Wilder\n 2.)Robin Wright\n 3.)Robin Williams\n 4.)Johnny Depp\nWhat is your guess?:\n"))
+          if int(gchoice) == 3:
             print("Correct! They allow you and your friends into the base because of your knowledge.")
             pause()
             print("Congrats! You win!")
-          elif int(ghoice) == 2:
+          elif int(gchoice) == 2:
             print("WRONG! They deny you access of entering their base AND they take all your supplies.")
             pause()
             print("YOU LOSE")
-          elif int(ghoice) == 4:
+          elif int(gchoice) == 4:
             print("WRONG! They deny you access of entering their base AND they take all your supplies.")
             pause()
             print("YOU LOSE")
-          elif int(ghoices) == 1:
+          elif int(gchoice) == 1:
             print("WRONG! They deny you access of entering their base AND they take all your supplies.")
             pause()
             print("YOU LOSE")
@@ -362,5 +360,4 @@ class Game:
         else:
           raise ValueError
       except:
-        print("Please try again.")
-        return self.zerozero()
+        print("\nPlease try again.\n")
