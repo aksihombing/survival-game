@@ -1,4 +1,3 @@
-
 # Helper Functions---------------
 def pause():
   input()  
@@ -342,22 +341,27 @@ class Game:
           if int(gchoice) == 3:
             print("Correct! They allow you and your friends into the base because of your knowledge.")
             pause()
-            print("Congrats! You win!")
+            print("Congrats!\n YOU WIN")
+            break
           elif int(gchoice) == 2:
             print("WRONG! They deny you access of entering their base AND they take all your supplies.")
             pause()
             print("YOU LOSE")
+            break
           elif int(gchoice) == 4:
             print("WRONG! They deny you access of entering their base AND they take all your supplies.")
             pause()
             print("YOU LOSE")
+            break
           elif int(gchoice) == 1:
             print("WRONG! They deny you access of entering their base AND they take all your supplies.")
             pause()
             print("YOU LOSE")
+            break
           else:
             raise ValueError
         else:
           raise ValueError
       except:
         print("\nPlease try again.\n")
+
