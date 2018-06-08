@@ -10,7 +10,7 @@ class Game:
   def __init__(self):
     self.state = ()
     self.party = {"Roblox poster" :False, 
-    "Gun": False, "Ammo": False, "Baton": True,}
+    "Gun": False, "Ammo": False, "Baton": True, "door":False}
 
 
 
@@ -46,7 +46,7 @@ class Game:
   def twoone(self):
     while True:
       try:
-        print("There is a large city ahead of your group. Do you wish to continue?\n Enter 1 to continue or 2 to travel east instead\n")
+        print("There is a large city ahead of your group. What do you do?\n 1.)Continue into the city\n 2.)Travel east instead\n")
         continuechoice = int(input())
         if int(continuechoice) == int(1):
           print("Your group follows you deep into the city.")
@@ -71,12 +71,12 @@ class Game:
             print("It's an easy ending, but nonetheless, the goal was to get to a base, so...")
             pause()
             print("YOU LOSE")
-            break
+            return self.playagain()
           else:
             print("Sucks to be you, huh? It gets worse, too. In an attempt to flee, you hadn't been paying attention to where you ran. You turn around and see a horde of infected people chasing after you, the only healthy person around.")
             pause()
-            print("G A M E  O V E R")
-            break
+            print("YOU LOSE")
+            return self.playagain()
         elif int(continuechoice) == 2:
           return self.poster()
         else:
@@ -85,26 +85,29 @@ class Game:
         print("\n Error. Please try again.\n")
  
   def poster(self):
-    print("You all unanimously decide to set up camp in this area for the night. The three of you drew straws to see who's on watch, and luckily it wasn't you. You got pretty decent sleep that night.")
-    pause()
-    print("'Hey! Look what I got!' your friend who was on watch says. They hold up a Roblox poster.")
-    while True:
-      try:
-        robloxposter = int(input("Do you:\n 1.)Keep it\n 2.)Throw it out?\n"))
-        if int(robloxposter) == 1:
-          print("Nice choice! What will this do, though?")
-          pause()
-          self.party["Roblox poster"] = True
-          return self.oneone()
-        elif int(robloxposter) == 2:
-          print("Well, okay then. Rude.")
-          pause()
-          self.party["Roblox poster"] = False
-          return self.oneone()
-        else:
-          raise ValueError
-      except:
-        print("\n Error. Please try again.\n")
+    if self.party["Roblox poster"] == True:
+      return self.oneone()
+    else:
+      print("You all unanimously decide to set up camp in this area for the night. The three of you drew straws to see who's on watch, and luckily it wasn't you. You got pretty decent sleep that night.")
+      pause()
+      print("'Hey! Look what I got!' your friend who was on watch says. They hold up a Roblox poster.")
+      while True:
+        try:
+          robloxposter = int(input("Do you:\n 1.)Keep it\n 2.)Throw it out?\n"))
+          if int(robloxposter) == 1:
+            print("Nice choice! What will this do, though?")
+            pause()
+            self.party["Roblox poster"] = True
+            return self.oneone()
+          elif int(robloxposter) == 2:
+            print("Well, okay then. Rude.")
+            pause()
+            self.party["Roblox poster"] = False
+            return self.oneone()
+          else:
+            raise ValueError
+        except:
+          print("\n Error. Please try again.\n")
   
   def oneone(self):
     print("'There seems to be many ways to go from here!' your friend cheerfully says.")
@@ -156,8 +159,7 @@ class Game:
           print(".... You end up getting infected. Well, on the bright side, you make friends with other infected people. That's good...right?")
           pause()
           print("YOU LOSE")
-          self.game_over = True
-          break
+          return self.playagain()
         elif int(direction1) == 2 :
           return self.twozero()
         elif int(direction1) == 3 :
@@ -187,14 +189,14 @@ class Game:
             print("You never made it out of there alive.")
             pause()
             print("YOU LOSE")
-            break
+            return self.playagain()
           elif int(runorstay) == 2:
             print("W-wow, that was unexpected. She swung at you and knocked your whole group out!")
             pause()
             print("Looks like you made the wrong choice...\n She knocked you pretty hard, and you never woke up.")
             pause()
             print("YOU LOSE")
-            break
+            return self.playagain()
           else:
             raise ValueError
         except:
@@ -229,8 +231,8 @@ class Game:
             if int(speakordie) == 1:
               print("It wasn't long until they spotted you all creeping on them. They didn't seem to enjoy being spied on, like many people. They were very 'defensive' and attacked. Let's spare you the details--")
               pause()
-              print("YOU L O S E")
-              break
+              print("YOU LOSE")
+              return self.playagain()
             elif int(speakordie) == 2:
               print("You first walked out from behind the trees. Your friends were quick to follow you, though reluctant to throw down their weapons just as you did.")
               pause()
@@ -244,8 +246,8 @@ class Game:
               pause()
               print("After getting sick from the polluted water, it's safe to say that you, and a few others, died. Maybe you shouldn't go vegan next time-- but that's just me.")
               pause()
-              print("YOU....LOSE?")
-              break
+              print("YOU LOSE")
+              return self.playagain()
             else:
               raise TypeError
         elif int(approach) == 2:
@@ -256,43 +258,68 @@ class Game:
         print("\n Error. Please try again.\n")
   
   def zeroone(self):
-      print("There's a small building in front of you. One of your friends drag you inside. The further you walk into it, the colder it feels. You get chills down your spine and goosebumps.")
-      pause()
-      while True:
-        try:
-          leftright=int(input("You get to a hallway with two doors. Where do you go?\n 1.)Left\n 2.)Right\n"))
-          if int(leftright) == 1:
-            print("After walking through the left door, you walk into another hallway, which leads you.. outside?")
+    while True:
+      try:
+        if self.party["door"] == True:
+          print("There's a small building in front of you. It's very familiar. Maybe you've been here before?")
+          pause()
+          print("You try to open the front door and it's locked. It seems like you can't go in.")
+          pause()
+          tryorleave = int(input("Do you:\n 1.)Find another entrance\n 2.)Go east\n"))
+          if int(tryorleave)== 1:
+            print("You found an open window in the back, but when you walk down the hallway it led to, a guy dressed up as a roblox character ambushes you.")
             pause()
-            print("Before you have time to react, the front door is slammed shut, sending you bad vibes. Your friends quickly drag you east with them.")
-            pause()
-            return self.poster()
-          elif int(leftright) == 2:
-            print("Oh? There's a staircase leading down into a basement!")
-            pause()
-            print("When you get to the bottom, there's a phone on the table...and.. what's this?")
-            pause()
-            print("Is that..? It's a roblox character...? Before you have time to process why there's a working smartphone and why the image is of a Roblox character, you turn around to see...")
-            pause()
-            print("a guy wearing colored cardboard boxes like the Roblox character in the picture..? W-what is going on?")
-            if self.party["Roblox poster"] == True:
-              pause()
-              print("You quickly pull out your handy Roblox poster. He seems pretty happy! He grabs the poster from you and you come out of the house alive!")
-              pause()
-              print("He's kind enough to write a note, saying that going north from there will lead to a safe place! You follow his directions and go north.")
-              return self.zerozero()
-            else:
-              pause()
-              print("O-Oh..It seems that you and your friends were taken by the Roblox man, never to return.")
-              pause()
-              print("Well sucks to be you, huh?")
-              pause()
-              print("YOU LOSE")
-              break
+            print("You never made it out of the building.")
+            print("YOU LOSE")
+            return self.playagain()
+          elif int(tryorleave)== 2:
+            return self.oneone()
           else:
             raise ValueError
-        except:
-            print("\n Error. Please try again.\n")
+        else:
+          return self.zocont()
+      except:
+        print("\n Error. Please try again.\n")
+      
+  def zocont(self):
+    print("There's a small building in front of you. One of your friends drag you inside. The further you walk into it, the colder it feels. You get chills down your spine and goosebumps.")
+    pause()
+    while True:
+      try:
+        leftright=int(input("You get to a hallway with two doors. Where do you go?\n 1.)Left\n 2.)Right\n"))
+        if int(leftright) == 1:
+          print("After walking through the left door, you walk into another hallway, which leads you.. outside?")
+          pause()
+          print("Before you have time to react, the front door is slammed shut, sending you bad vibes. Your friends quickly drag you east with them.")
+          pause()
+          self.party["door"] = True
+          return self.poster()
+        elif int(leftright) == 2:
+          print("Oh? There's a staircase leading down into a basement!")
+          pause()
+          print("When you get to the bottom, there's a phone on the table...and.. what's this?")
+          pause()
+          print("Is that..? It's a roblox character...? Before you have time to process why there's a working smartphone and why the image is of a Roblox character, you turn around to see...")
+          pause()
+          print("a guy wearing colored cardboard boxes like the Roblox character in the picture..? W-what is going on?")
+          if self.party["Roblox poster"] == True:
+            pause()
+            print("You quickly pull out your handy Roblox poster. He seems pretty happy! He grabs the poster from you and you come out of the house alive!")
+            pause()
+            print("He's kind enough to write a note, saying that going north from there will lead to a safe place! You follow his directions and go north.")
+            return self.zerozero()
+          else:
+            pause()
+            print("O-Oh..It seems that you and your friends were taken by the Roblox man, never to return.")
+            pause()
+            print("Well sucks to be you, huh?")
+            pause()
+            print("YOU LOSE")
+            return self.playagain()
+        else:
+          raise ValueError
+      except:
+        print("\n Error. Please try again.\n")
         
   def onetwo(self):
     while True:
@@ -342,24 +369,40 @@ class Game:
             print("Correct! They allow you and your friends into the base because of your knowledge.")
             pause()
             print("Congrats!\n YOU WIN")
-            break
+            return self.playagain()
           elif int(gchoice) == 2:
             print("WRONG! They deny you access of entering their base AND they take all your supplies.")
             pause()
             print("YOU LOSE")
-            break
+            return self.playagain()
           elif int(gchoice) == 4:
             print("WRONG! They deny you access of entering their base AND they take all your supplies.")
             pause()
             print("YOU LOSE")
-            break
+            return self.playagain()
           elif int(gchoice) == 1:
             print("WRONG! They deny you access of entering their base AND they take all your supplies.")
             pause()
             print("YOU LOSE")
-            break
+            return self.playagain()
           else:
             raise ValueError
+        else:
+          raise ValueError
+      except:
+        print("\nPlease try again.\n")
+  
+  def playagain(self):
+    while True:
+      try:
+        replay = int(input("\n\nPlay again?\n1.)Yes\n2.)No\n"))
+        if int(replay) == 1:
+          print("Thanks for playing! Press ENTER to start the game again.\n\n\n\n")
+          pause()
+          return self.story()
+        elif int(replay) == 2:
+          print("Thanks for playing!")
+          break
         else:
           raise ValueError
       except:
