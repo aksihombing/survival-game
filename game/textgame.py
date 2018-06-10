@@ -10,7 +10,8 @@ class Game:
   def __init__(self):
     self.state = ()
     self.party = {"Roblox poster" :False, 
-    "Gun": False, "Ammo": False, "Baton": True, "door":False}
+    "Gun": False, "Ammo": False, "Baton": True}
+    self.repeats = {"door":False, "poster":False}
 
 
 
@@ -66,10 +67,6 @@ class Game:
             pause()
             print("It seems you're on your own.. That's unfortunate. On the bright side, you seem to do so well on your own! You live!.... for a month, until you find yourself at the wrong place in the wrong time...")
             pause()
-            print("Congrats! You get the Not-So-Bad ending!")
-            pause()
-            print("It's an easy ending, but nonetheless, the goal was to get to a base, so...")
-            pause()
             print("YOU LOSE")
             return self.playagain()
           else:
@@ -85,7 +82,7 @@ class Game:
         print("\n Error. Please try again.\n")
  
   def poster(self):
-    if self.party["Roblox poster"] == True:
+    if self.repeats["poster"] == True:
       return self.oneone()
     else:
       print("You all unanimously decide to set up camp in this area for the night. The three of you drew straws to see who's on watch, and luckily it wasn't you. You got pretty decent sleep that night.")
@@ -98,11 +95,13 @@ class Game:
             print("Nice choice! What will this do, though?")
             pause()
             self.party["Roblox poster"] = True
+            self.repeats["poster"] = True
             return self.oneone()
           elif int(robloxposter) == 2:
             print("Well, okay then. Rude.")
             pause()
             self.party["Roblox poster"] = False
+            self.repeats["poster"] = True
             return self.oneone()
           else:
             raise ValueError
@@ -175,7 +174,7 @@ class Game:
     print("An old lady appears in front of you, with armed people behind her. She gives you one look and decides to run at you with her cane.")
     if self.party["Gun"] == True:
       pause()
-      print("You quickly pull out your empty gun and point it at her. You were clearly bluffing, but this gave you a little bit of a chance to survive.")
+      print("You quickly pull out your gun and point it at her. They weren't sure if you were bluffing, but it gave you a little bit of a chance to survive.")
       pause()
       print("Everyone stops. You begin to make a compromise and they let you head west in peace.")
       return self.onezero()
@@ -203,14 +202,17 @@ class Game:
           print("\n Error. Please try again.\n")
   
   def zerotwo(self):
-    ammochoice = int(input("While you group travels, you find some ammo. Do you pick it up?\n 1.)Yes\n 2.)No\n"))
-    if int(ammochoice) == 1:
-      print("You put the ammo into your bag and continue on.")
-      self.party["Ammo"] = True
+    if self.party["Ammo"] == True:
       return self.zerotwocont()
-    elif int(ammochoice) == 2:
-      print("You shrug and walk forward.")
-      return self.zerotwocont()
+    else:
+      ammochoice = int(input("While you group travels, you find some ammo. Do you pick it up?\n 1.)Yes\n 2.)No\n"))
+      if int(ammochoice) == 1:
+        print("You put the ammo into your bag and continue on.")
+        self.party["Ammo"] = True
+        return self.zerotwocont()
+      elif int(ammochoice) == 2:
+        print("You shrug and walk forward.")
+        return self.zerotwocont()
   
   def zerotwocont(self):
     print("There's a mysterious light somewhere in the trees. What could it be?")
@@ -260,7 +262,7 @@ class Game:
   def zeroone(self):
     while True:
       try:
-        if self.party["door"] == True:
+        if self.repeats["door"] == True:
           print("There's a small building in front of you. It's very familiar. Maybe you've been here before?")
           pause()
           print("You try to open the front door and it's locked. It seems like you can't go in.")
@@ -292,7 +294,7 @@ class Game:
           pause()
           print("Before you have time to react, the front door is slammed shut, sending you bad vibes. Your friends quickly drag you east with them.")
           pause()
-          self.party["door"] = True
+          self.repeats["door"] = True
           return self.poster()
         elif int(leftright) == 2:
           print("Oh? There's a staircase leading down into a basement!")
@@ -407,4 +409,3 @@ class Game:
           raise ValueError
       except:
         print("\nPlease try again.\n")
-
