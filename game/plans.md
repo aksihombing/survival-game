@@ -1,7 +1,5 @@
 # PLANS
 ### Player Inputs
-* Main character name
-* Friend names
 * Yes or No for choices
 
 ### Keep track of:
